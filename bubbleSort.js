@@ -1,10 +1,14 @@
 function bubbleSort(array) {
-    for (let i = 0; i < array.length - 1; i++) {
-        if (array[i] > array[i + 1]) {
-            [array[i], array[i + 1]] = [array[i + 1], array[i]]
-        }
+  if (!Array.isArray(array))
+    throw new TypeError("The 'array' argument must be an array.");
 
-    }
-    if (Math.min(...array) === array[0] && Math.max(...array) === array[array.length - 1]) return array
-    else return bubbleSort(array)
+  const len = array.length - 1;
+
+  for (let i = 0; i < len; i++)
+    if (array[i] > array[i + 1])
+      [array[i], array[i + 1]] = [array[i + 1], array[i]];
+
+  return (Math.min(...array) === array[0] && Math.max(...array) === array[len])
+    ? array
+    : bubbleSort(array);
 }
